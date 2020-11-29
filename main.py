@@ -63,8 +63,8 @@ def post_route(post_slug):
     else:
         Post = Posts.query.filter_by(slug=post_slug).first()
         # splits up the content by para so that it's easier to output in the template file. Then resets Post.PostContent to the generated list of paras
-        contenttobreak = Post.PostContent.split('\n')
-        Post.PostContent = contenttobreak
+        # contenttobreak = Post.PostContent.split('\n')
+        # Post.PostContent = contenttobreak
         return render_template('post.html', Post=Post)
 
 
@@ -208,7 +208,6 @@ def dashboard():
         UserName = request.form.get('UserName')
         Password = request.form.get('Password')
         checkuse = "MathSSC"
-
         checkpass = "Aryabhatta"
         if(UserName == checkuse and Password == checkpass):
             # Set The Session Variable
