@@ -27,10 +27,48 @@
       left: 16px;
     }
   </style>
+  
+  
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+ 
+  <script>
+  MathJax = {
+    loader: {
+      load: [
+        'input/tex-base', '[tex]/newcommand', '[tex]/action',
+        'output/chtml',  'a11y/explorer','[tex]/tagformat'
+      ]
+    },
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)'],],
+      displayMath: [             // start/end delimiter pairs for display math
+      ['$$', '$$'],
+      ['\\[', '\\]']
+    ],
+      packages: ['base', 'newcommand', 'action'],
+      // packages: {'[+]': ['enclose'],
+      tags: 'all',
+      processEnvironments: true,
+      processRefs: true, 
+      tagIndent: '0.8em',
+      useLabelIds: true,   
+      tagSide: 'right'
+
+    },
+    svg: {
+    fontCache: 'global'
+  }
+
+  };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"></script>
+ 
 </head>
 
 <body>
+
+
 
 
   {% set IMAGE= 'images/' +Post.ImgFile  %}
@@ -43,6 +81,7 @@
 
 <a href="/" class="top-left" style="font-size:32px; font-weight: 1000; color:white">HOME</a>
 </div> -->
+
   <div>
     <img src="{{ url_for('static', filename=IMAGE)}}" style="    width: 100%;
   height: auto;
@@ -64,22 +103,34 @@
 
 
 
-
-
   <div style="float:right"><span> on {{Post.DT}}</span></div>
   <div class="container" style="max-width:60vw">
 
 
-    <h3 style="margin:revert; margin-top: 20px; margin-left:20vw">{{Post.PostTitle}}</h3>
+    <h2 style="margin:revert; margin-top: 20px; margin-left:20vw">{{Post.PostTitle}}</h3>
     <div class="container"> <span> Written by <b>{{Post.PostedBy}}</b></span></div>
-    <p style="font-size:20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
-      {{Post.PostContent}}</p>
 
-    <!-- {{Post.PostContent}} -->
+    
+      
+
+     <div class="container">
+      <div class="row">
+       
+        <div class=" mx-auto">
+          {% for para in Post.PostContent %}
+          <p style="font-size:25px">{{para}}</p>
+
+        {% endfor %}
+
+          </div>
+      </div>
+    </div>
+ 
+
+
   </div>
 
-
-  <footer class="page-footer text-center  blue">
+    <footer class="page-footer text-center  blue">
 
     <a href="https://www.facebook.com/TheMathematicsSociety/" class="fa fa-facebook"></a>
     <a href="https://www.linkedin.com/company/mathsoc-ssc" class="fa fa-linkedin"></a>
@@ -102,3 +153,5 @@
 </body>
 
 </html>
+
+

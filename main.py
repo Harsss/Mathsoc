@@ -20,7 +20,7 @@ app.secret_key=str(os.urandom(16))
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:@localhost/compscsoc"
 
-app.config['UPLOAD_FOLDER'] = "C:\\Users\\SSC\\Desktop\\Maweb\\web\\static\\images"
+app.config['UPLOAD_FOLDER'] = "C:\\Users\\JSR\\Desktop\\Maweb\\web\\static\\images"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # to keep t 
 # uses a relative path name instead of a complete path name,
@@ -63,9 +63,17 @@ def post_route(post_slug):
     else:
         Post = Posts.query.filter_by(slug=post_slug).first()
         # splits up the content by para so that it's easier to output in the template file. Then resets Post.PostContent to the generated list of paras
-        # contenttobreak = Post.PostContent.split('\n')
-        # Post.PostContent = contenttobreak
+        contenttobreak = Post.PostContent.split('\n')
+        Post.PostContent = contenttobreak
         return render_template('post.html', Post=Post)
+
+
+
+
+
+
+
+
 
 
 def allowed_file(filename):
